@@ -11,7 +11,7 @@ function Login() {
   } = useContext(LoginContext);
   const passwordNumber = 6;
   const validateEmail = /\S+@\S+\.\S+/i.test(email);
-  const validatePassword = password >= passwordNumber;
+  const validatePassword = password.length > passwordNumber;
 
   return (
     <section>
