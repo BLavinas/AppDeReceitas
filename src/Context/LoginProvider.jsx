@@ -1,36 +1,34 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  // const [checkLogin, setCheckLogin] = useState(true);
+  const history = useHistory();
 
   const handleEmail = ({ target: { value } }) => {
     setEmail(value);
-    // const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-    // if (emailRegex.test(`${email}`)) {
-    //   setCheckLogin(false);
-    // }
   };
 
   const handlePassword = ({ target: { value } }) => {
     setPassword(value);
-    // const passwordNumber = 6;
-    // const validatePassword = password > passwordNumber;
-    // if (validatePassword) {
-    //   setCheckLogin(false);
-    // }
   };
+
+  const handleClick = useCallback(() => {
+    localStorage.setItem('user', JSON.stringify({ email }));
+    history.push('/meals');
+  }, [email, history]);
 
   const contextLoginValue = useMemo(() => ({
     password,
     handlePassword,
     email,
     handleEmail,
-    // checkLogin,
-  }), [email, password]);
+    handleClick,
+  }), [email, password, handleClick]);
+
   return (
     <LoginContext.Provider value={ contextLoginValue }>
       { children }

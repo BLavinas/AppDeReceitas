@@ -7,7 +7,7 @@ function Login() {
     email,
     handleEmail,
     handlePassword,
-    // checkLogin,
+    handleClick,
   } = useContext(LoginContext);
   const passwordNumber = 6;
   const validateEmail = /\S+@\S+\.\S+/i.test(email);
@@ -42,6 +42,7 @@ function Login() {
           data-testid="login-submit-btn"
           type="button"
           disabled={ !(validateEmail && validatePassword) }
+          onClick={ handleClick }
         >
           Enter
         </button>
