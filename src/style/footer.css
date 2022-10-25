@@ -1,0 +1,15 @@
+.generalFooter {
+  background-color: orange;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+}
+
+.Container-footer {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 200px;
+}
