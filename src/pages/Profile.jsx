@@ -1,11 +1,16 @@
 import React from 'react';
 import Footer from '../component/Footer';
+import HeaderDois from '../component/HeaderDois';
 
-export default function Profile() {
+function Profile() {
   return (
     <div>
-      <span> Profile </span>
+      <HeaderDois />
+      <title data-testid="page-title" title="Profile">Profile</title>
+      <div>Profile</div>
       <Footer />
     </div>
   );
 }
+
+export default Profile;
