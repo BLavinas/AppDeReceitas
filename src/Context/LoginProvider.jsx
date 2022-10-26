@@ -1,14 +1,15 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+
   const [mealRecipe, setMealRecipe] = useState([]);
   const [drinkRecipe, setDrinkRecipe] = useState([]);
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleEmail = ({ target: { value } }) => {
     setEmail(value);
@@ -20,8 +21,8 @@ function LoginProvider({ children }) {
 
   const handleClick = useCallback(() => {
     localStorage.setItem('user', JSON.stringify({ email }));
-    history.push('/meals');
-  }, [email, history]);
+    // TODO: retirei o history.push e substitui por um link no button.
+  }, [email]);
 
   const contextLoginValue = useMemo(() => ({
     password,

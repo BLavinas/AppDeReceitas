@@ -30,9 +30,8 @@ export default function MealRecipes(props) {
            && measure[1]
            !== '' && measure[1] !== null).map((measure) => measure[1]);
       setIngredientsMeasure(measureIngredient);
-      const getYoutubeId = mealRecipe?.strYoutube?.replace('https://www.youtube.com/watch?v=', '');
+      const getYoutubeId = await mealRecipe?.strYoutube?.replace('https://www.youtube.com/watch?v=', '');
       setYoutubeId(getYoutubeId);
-      // console.log(youtubeId);
     };
     requestMealApi();
   }, []);
