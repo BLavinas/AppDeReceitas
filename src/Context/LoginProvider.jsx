@@ -7,8 +7,11 @@ function LoginProvider({ children }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
+  const [lsEmail, setLsEmail] = useState('');
+
   const [mealRecipe, setMealRecipe] = useState([]);
   const [drinkRecipe, setDrinkRecipe] = useState([]);
+
   // const history = useHistory();
 
   const handleEmail = ({ target: { value } }) => {
@@ -17,6 +20,15 @@ function LoginProvider({ children }) {
 
   const handlePassword = ({ target: { value } }) => {
     setPassword(value);
+  };
+
+  const LocalStoreClear = () => {
+    localStorage.clear();
+  };
+
+  const GetEmailByLs = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    setLsEmail(user.email);
   };
 
   const handleClick = useCallback(() => {
@@ -30,11 +42,15 @@ function LoginProvider({ children }) {
     email,
     handleEmail,
     handleClick,
+    LocalStoreClear,
+    GetEmailByLs,
+    lsEmail,
     mealRecipe,
     setMealRecipe,
     drinkRecipe,
     setDrinkRecipe,
-  }), [email, password, handleClick, mealRecipe, drinkRecipe]);
+  }), [email, password, handleClick, mealRecipe, drinkRecipe, lsEmail]);
+
 
   return (
     <LoginContext.Provider value={ contextLoginValue }>
