@@ -6,7 +6,12 @@ import LoginContext from './LoginContext';
 function LoginProvider({ children }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+
   const [lsEmail, setLsEmail] = useState('');
+
+  const [mealRecipe, setMealRecipe] = useState([]);
+  const [drinkRecipe, setDrinkRecipe] = useState([]);
+
   // const history = useHistory();
 
   const handleEmail = ({ target: { value } }) => {
@@ -40,7 +45,12 @@ function LoginProvider({ children }) {
     LocalStoreClear,
     GetEmailByLs,
     lsEmail,
-  }), [email, password, handleClick, lsEmail]);
+    mealRecipe,
+    setMealRecipe,
+    drinkRecipe,
+    setDrinkRecipe,
+  }), [email, password, handleClick, mealRecipe, drinkRecipe, lsEmail]);
+
 
   return (
     <LoginContext.Provider value={ contextLoginValue }>
