@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 
 function Login() {
@@ -38,14 +39,16 @@ function Login() {
           </label>
 
         </label>
-        <button
-          data-testid="login-submit-btn"
-          type="button"
-          disabled={ !(validateEmail && validatePassword) }
-          onClick={ handleClick }
-        >
-          Enter
-        </button>
+        <Link to="/meals">
+          <button
+            data-testid="login-submit-btn"
+            type="button"
+            disabled={ !(validateEmail && validatePassword) }
+            onClick={ handleClick }
+          >
+            Enter
+          </button>
+        </Link>
       </form>
     </section>
   );
