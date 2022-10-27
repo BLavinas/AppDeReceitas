@@ -11,6 +11,7 @@ export default function DrinkCarousel() {
     const randomMeals = mealRecipeResponse?.sort(() => randomNumber - Math.random());
     const maxMeals = randomMeals?.slice(0, maxNumber);
     setDataMealApi(maxMeals);
+    // faltando criar 'carousel'
   };
 
   useEffect(() => {
