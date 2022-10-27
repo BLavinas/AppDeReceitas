@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 
 import Footer from '../component/Footer';
+import HeaderDois from '../component/HeaderDois';
 
+
+function Profile() {
 import '../style/profile-page.css';
 
 export default function Profile() {
@@ -20,6 +23,10 @@ export default function Profile() {
   return (
     // FIXME: arrumar o email conforme o context
     <div>
+
+      <HeaderDois />
+      <title data-testid="page-title" title="Profile">Profile</title>
+      <div>Profile</div>
       <div className="container-profile">
         <h2 data-testid="profile-email">
           { lsEmail }
@@ -55,3 +62,5 @@ export default function Profile() {
     </div>
   );
 }
+
+export default Profile;

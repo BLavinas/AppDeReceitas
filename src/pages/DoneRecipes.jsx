@@ -1,7 +1,15 @@
 import React from 'react';
+import HeaderDois from '../component/HeaderDois';
 
-export default function DoneRecipes() {
+function DoneRecipes() {
   return (
-    <div>DoneRecipes</div>
+    <div>
+      <HeaderDois />
+      <title data-testid="page-title" title="Done Recipes">Done Recipes</title>
+      <div>DoneRecipes</div>
+
+    </div>
   );
 }
+
+export default DoneRecipes;
