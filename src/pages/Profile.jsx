@@ -1,13 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
+import '../style/profile-page.css';
 
 import Footer from '../component/Footer';
 import HeaderDois from '../component/HeaderDois';
-
-
-function Profile() {
-import '../style/profile-page.css';
 
 export default function Profile() {
   const {
@@ -62,5 +59,3 @@ export default function Profile() {
     </div>
   );
 }
-
-export default Profile;
