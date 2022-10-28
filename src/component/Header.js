@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
@@ -27,9 +28,8 @@ function Header() {
             alt="searchIcon"
           />
         </button>
-        {show && <input data-testid="search-input" />}
+        {show && <SearchBar />}
       </div>
-
     </div>
   );
 }
