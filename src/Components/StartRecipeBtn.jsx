@@ -1,8 +1,20 @@
 import React from 'react';
 
 export default function StartRecipeBtn() {
-  return (
-    <div>
+  const getLocalInProgress = localStorage.getItem('inProgressRecipes');
+  const checkBtn = () => {
+    if (getLocalInProgress !== null) {
+      return (
+        <button
+          style={ { position: 'fixed', bottom: '0px' } }
+          type="button"
+          data-testid="start-recipe-btn"
+        >
+          Continue Recipe
+        </button>
+      );
+    }
+    return (
       <button
         style={ { position: 'fixed', bottom: '0px' } }
         data-testid="start-recipe-btn"
@@ -11,6 +23,12 @@ export default function StartRecipeBtn() {
         Start Recipe
 
       </button>
+    );
+  };
+
+  return (
+    <div>
+      {checkBtn()}
     </div>
   );
 }
