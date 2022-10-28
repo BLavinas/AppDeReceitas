@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-// import { Placeholder } from "react-bootstrap";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export default function SearchBar() {
   const [filterApi, setFilterApi] = useState('');
   const [searchinput, setSearchInput] = useState('');
-  const [data, setData] = useState('');
+  const [data, setData] = useState({});
 
   const handleIngredientInput = ({ target: { value } }) => {
     setFilterApi(value);
@@ -22,32 +22,59 @@ export default function SearchBar() {
     setSearchInput(value);
   };
 
-  const requestApi = async (param) => {
+  const history = useHistory();
+  const { location: { pathname } } = history;
+
+  const requestMealApi = async (param) => {
     if (filterApi === 'ingredient') {
       const endPointIngredient = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${param}`;
       const responseIngredient = await fetch(endPointIngredient);
       const resultIngredient = await responseIngredient.json();
       setData(resultIngredient);
-    }
-    if (filterApi === 'name') {
+      console.log(data);
+    } else if (filterApi === 'name') {
       const endPontName = `https://www.themealdb.com/api/json/v1/1/search.php?s=${param}`;
       const responseName = await fetch(endPontName);
       const resultName = await responseName.json();
       setData(resultName);
-    }
-    if (filterApi === 'letter' && searchinput.length === 1) {
+      console.log(data);
+    } else if (filterApi === 'letter' && searchinput.length === 1) {
       const endPointLetter = `https://www.themealdb.com/api/json/v1/1/search.php?f=${param}`;
       const responseLetter = await fetch(endPointLetter);
       const resultLetter = await responseLetter.json();
       setData(resultLetter);
+      console.log(data);
     } else {
       global.alert('Your search must have only 1 (one) character');
     }
   };
 
-  useEffect(() => {
-    requestApi(searchinput);
-  }, []);
+  const requestDrinkApi = async (param) => {
+    if (filterApi === 'ingredient') {
+      const endPointIngredient = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${param}`;
+      const responseIngredient = await fetch(endPointIngredient);
+      const resultIngredient = await responseIngredient.json();
+      setData(resultIngredient);
+      console.log(data);
+    } else if (filterApi === 'name') {
+      const endPontName = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${param}`;
+      const responseName = await fetch(endPontName);
+      const resultName = await responseName.json();
+      setData(resultName);
+      console.log(data);
+    } else if (filterApi === 'letter' && searchinput.length === 1) {
+      const endPointLetter = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${param}`;
+      const responseLetter = await fetch(endPointLetter);
+      const resultLetter = await responseLetter.json();
+      setData(resultLetter);
+      console.log(data);
+    } else {
+      global.alert('Your search must have only 1 (one) character');
+    }
+  };
+
+  const handleClick = () => (pathname.includes('meals')
+    ? requestMealApi(searchinput) : requestDrinkApi(searchinput));
 
   return (
     <div>
@@ -55,6 +82,7 @@ export default function SearchBar() {
         <label htmlFor="search">
           Search
           <input
+            data-testid="search-input"
             type="text"
             id="search"
             placeholder="Faça uma busca"
@@ -68,7 +96,7 @@ export default function SearchBar() {
           <input
             type="radio"
             data-testid="ingredient-search-radio"
-            name="ingredient-search"
+            name="filter-radio"
             value="ingredient"
             onChange={ handleIngredientInput }
           />
@@ -78,7 +106,7 @@ export default function SearchBar() {
           <input
             type="radio"
             data-testid="name-search-radio"
-            name="search-name"
+            name="filter-radio"
             value="name"
             onChange={ handleNameInput }
           />
@@ -88,12 +116,16 @@ export default function SearchBar() {
           <input
             type="radio"
             data-testid="first-letter-search-radio"
-            name="first-letter"
+            name="filter-radio"
             value="letter"
             onChange={ handleFirstLetterInput }
           />
         </label>
-        <button type="button" data-testid="exec-search-btn">
+        <button
+          type="button"
+          onClick={ handleClick }
+          data-testid="exec-search-btn"
+        >
           Search
         </button>
       </form>
