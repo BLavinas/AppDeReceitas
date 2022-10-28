@@ -51,7 +51,6 @@ function LoginProvider({ children }) {
     setDrinkRecipe,
   }), [email, password, handleClick, mealRecipe, drinkRecipe, lsEmail]);
 
-
   return (
     <LoginContext.Provider value={ contextLoginValue }>
       { children }
