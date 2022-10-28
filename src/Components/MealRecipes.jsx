@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import LoginContext from '../Context/LoginContext';
 import DrinkCarousel from './DrinkCarousel';
+import StartRecipeBtn from './StartRecipeBtn';
 
 export default function MealRecipes(props) {
   const [mealIngredients, setMealIngredients] = useState([]);
@@ -70,6 +71,9 @@ export default function MealRecipes(props) {
       <section>
         <DrinkCarousel />
       </section>
+      <div>
+        <StartRecipeBtn />
+      </div>
     </div>
   );
 }

@@ -20,12 +20,20 @@ export default function DrinkCarousel() {
     requestMealApi();
   }, []);
   return (
-    <div style={ { width: 300, heigth: 300 } }>
-      <Carousel thumbWidth={ 300 } dynamicHeight={ 200 }>
+    <div style={ { width: '35vw', height: '35vw' } }>
+      <Carousel style={ { width: '35vw', height: '35vw' } }>
         {dataMealApi?.map((recipe, index) => (
-          <Carousel.Item data-testid={ `${index}-recommendation-card` } key={ index }>
+          <Carousel.Item
+            style={ { width: '35vw', height: '35vw' } }
+            data-testid={ `${index}-recommendation-card` }
+            key={ index }
+          >
             <h6 data-testid={ `${index}-recommendation-title` }>{recipe.strMeal}</h6>
-            <img style={ {} } src={ recipe.strMealThumb } alt={ recipe.strMeal } />
+            <img
+              style={ { width: '100%', height: '100%' } }
+              src={ recipe.strMealThumb }
+              alt={ recipe.strMeal }
+            />
           </Carousel.Item>
         ))}
       </Carousel>
