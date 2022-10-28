@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import LoginContext from '../Context/LoginContext';
+import MealCarousel from './MealCarousel';
 
 export default function DrinkRecipes(props) {
   const [drinkIngredients, setDrinkIngredients] = useState([]);
   const [ingredientsMeasure, setIngredientsMeasure] = useState([]);
   const { drinkRecipe, setDrinkRecipe } = useContext(LoginContext);
+
   useEffect(() => {
     const requestDrinkApi = async () => {
       const { props: { match: { params: { id } } } } = props;
@@ -30,6 +32,7 @@ export default function DrinkRecipes(props) {
       setIngredientsMeasure(measureIngredient);
     };
     requestDrinkApi();
+    // requestMealApi();
   }, []);
   return (
     <div>
@@ -47,6 +50,9 @@ export default function DrinkRecipes(props) {
           {`${ingredient} ${ingredientsMeasure[index]}`}
         </p>))}
       <p data-testid="instructions">{drinkRecipe.strInstructions}</p>
+      <section>
+        <MealCarousel />
+      </section>
     </div>
   );
 }

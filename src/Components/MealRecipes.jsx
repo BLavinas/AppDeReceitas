@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import LoginContext from '../Context/LoginContext';
+import DrinkCarousel from './DrinkCarousel';
 
 export default function MealRecipes(props) {
   const [mealIngredients, setMealIngredients] = useState([]);
@@ -66,6 +67,9 @@ export default function MealRecipes(props) {
         allowFullScreen
         title="Embedded youtube"
       />
+      <section>
+        <DrinkCarousel />
+      </section>
     </div>
   );
 }

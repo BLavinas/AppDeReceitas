@@ -1,7 +1,15 @@
 import React from 'react';
+import HeaderDois from '../component/HeaderDois';
 
-export default function FavoriteRecipes() {
+function FavoriteRecipes() {
   return (
-    <div>FavoriteRecipes</div>
+    <div>
+      <HeaderDois />
+      <title data-testid="page-title" title="Favorite Recipes">Favorite Recipes</title>
+      <div>FavoriteRecipes</div>
+
+    </div>
   );
 }
+
+export default FavoriteRecipes;
