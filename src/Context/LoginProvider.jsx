@@ -27,8 +27,8 @@ function LoginProvider({ children }) {
   };
 
   const GetEmailByLs = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    setLsEmail(user.email);
+    const user = JSON.parse(localStorage?.getItem('user'));
+    setLsEmail(user?.email);
   };
 
   const handleClick = useCallback(() => {
