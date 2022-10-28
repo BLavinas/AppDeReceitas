@@ -5,7 +5,6 @@ import InitialDrinksRecipes from '../component/InitialDrinksRecipes';
 import InitialMealsRecipes from '../component/InitialMealsRecipes';
 import Header from '../component/Header';
 
-
 export default function Recipes() {
   const history = useHistory();
   const { location: { pathname } } = history;
