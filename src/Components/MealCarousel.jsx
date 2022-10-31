@@ -20,7 +20,7 @@ export default function DrinkCarousel() {
     requestMealApi();
   }, []);
   return (
-    <div style={ { width: '35vw', height: '35vw' } }>
+    <div style={ { width: '35vw', height: '35vw', alignContent: 'center' } }>
       <Carousel style={ { width: '35vw', height: '35vw' } }>
         {dataMealApi?.map((recipe, index) => (
           <Carousel.Item

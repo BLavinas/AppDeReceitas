@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import LoginContext from '../Context/LoginContext';
 import MealCarousel from './MealCarousel';
 import StartRecipeBtn from './StartRecipeBtn';
+import ShareBtn from './ShareBtn';
+import FavoriteBtn from './FavoriteBtn';
 
 export default function DrinkRecipes(props) {
   const [drinkIngredients, setDrinkIngredients] = useState([]);
@@ -33,7 +35,6 @@ export default function DrinkRecipes(props) {
       setIngredientsMeasure(measureIngredient);
     };
     requestDrinkApi();
-    // requestMealApi();
   }, []);
   return (
     <div>
@@ -51,6 +52,8 @@ export default function DrinkRecipes(props) {
           {`${ingredient} ${ingredientsMeasure[index]}`}
         </p>))}
       <p data-testid="instructions">{drinkRecipe.strInstructions}</p>
+      <ShareBtn />
+      <FavoriteBtn />
       <section>
         <MealCarousel />
       </section>

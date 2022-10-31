@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import LoginContext from '../Context/LoginContext';
 import DrinkCarousel from './DrinkCarousel';
 import StartRecipeBtn from './StartRecipeBtn';
+import ShareBtn from './ShareBtn';
+import FavoriteBtn from './FavoriteBtn';
 
 export default function MealRecipes(props) {
   const [mealIngredients, setMealIngredients] = useState([]);
@@ -68,6 +70,8 @@ export default function MealRecipes(props) {
         allowFullScreen
         title="Embedded youtube"
       />
+      <ShareBtn />
+      <FavoriteBtn />
       <section>
         <DrinkCarousel />
       </section>
