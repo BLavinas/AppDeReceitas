@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
-import LoginContext from '../Context/LoginContext';
+import React, { useState, useEffect } from 'react';
 
 function InitialMealsRecipes() {
-  const { initialMeals } = useContext(LoginContext);
+  const [initialMeals, setInitialMeals] = useState([]);
   const [categoryMeal, setCategoryMeal] = useState([]);
+  const [newInititalMeal, setNewInitialMeals] = useState([]);
   const numberMaxArray = 11;
   const numberMaxCategory = 4;
 
@@ -26,6 +26,16 @@ function InitialMealsRecipes() {
     });
 
   useEffect(() => {
+    const fetchInitialMeals = async () => {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      const info = await response.json();
+      setInitialMeals(info.meals);
+      setNewInitialMeals(info.meals);
+    };
+    fetchInitialMeals();
+  }, []);
+
+  useEffect(() => {
     const fetchCategories = async () => {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
       const data = await response.json();
@@ -34,20 +44,37 @@ function InitialMealsRecipes() {
     fetchCategories();
   }, []);
 
+  const fetchSelectedCategory = async (category) => {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+    const info = await response.json();
+    setInitialMeals(info.meals);
+  };
+
   return (
     <div>
-      <h2>Categorias</h2>
-      {
-        arrayCategoryMeal.map((category) => (
-          <button
-            type="button"
-            key={ category.strCategory }
-            data-testid={ `${category.strCategory}-category-filter` }
-          >
-            { category.strCategory }
-          </button>
-        ))
-      }
+      <section>
+        <h2>Categorias</h2>
+        {
+          arrayCategoryMeal.map((category) => (
+            <button
+              type="button"
+              key={ category.strCategory }
+              data-testid={ `${category.strCategory}-category-filter` }
+              onClick={ () => fetchSelectedCategory(category.strCategory) }
+            >
+              { category.strCategory }
+            </button>
+          ))
+        }
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ () => setInitialMeals(newInititalMeal) }
+        >
+          All
+        </button>
+      </section>
+
       {
         listMeals.map((meal, index) => (
           <section data-testid={ `${index}-recipe-card` } key={ meal.idMeal }>
@@ -59,6 +86,7 @@ function InitialMealsRecipes() {
             />
           </section>
         ))
+
       }
     </div>
   );
