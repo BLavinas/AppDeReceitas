@@ -26,7 +26,7 @@ function App() {
             component={ RecipeInProgress }
           />
           <Route
-            path="/drinks:id/in-progress"
+            path="/drinks/:id/in-progress"
             component={ RecipeInProgress }
           />
           <Route path="/profile" component={ Profile } />
