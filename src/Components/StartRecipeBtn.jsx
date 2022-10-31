@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 export default function StartRecipeBtn() {
   const getLocalInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'))
@@ -11,35 +11,40 @@ export default function StartRecipeBtn() {
   const drinkOrMeal = pathSplit[1];
   const inProgressKeys = Object.keys(getLocalInProgress[drinkOrMeal]);
 
-  const handleClick = () => {
-    history.push(`${pathname}/in-progress`);
-  };
+  // const handleClick = () => {
+  //   history.push(`${pathname}/in-progress`);
+  // };
 
   const checkBtn = () => {
     if (getLocalInProgress[drinkOrMeal] !== null
       && inProgressKeys.includes(id)
     ) {
       return (
-        <button
-          style={ { position: 'fixed', bottom: '0px' } }
-          type="button"
-          data-testid="start-recipe-btn"
-          onClick={ handleClick }
-        >
-          Continue Recipe
-        </button>
+        <Link to={ `${pathname}/in-progress` }>
+          <button
+            style={ { position: 'fixed', bottom: '0px' } }
+            type="button"
+            data-testid="start-recipe-btn"
+          // onClick={ handleClick }
+          >
+            Continue Recipe
+          </button>
+        </Link>
+
       );
     }
     return (
-      <button
-        style={ { position: 'fixed', bottom: '0px' } }
-        data-testid="start-recipe-btn"
-        type="button"
-        onClick={ handleClick }
-      >
-        Start Recipe
+      <Link to={ `${pathname}/in-progress` }>
+        <button
+          style={ { position: 'fixed', bottom: '0px' } }
+          data-testid="start-recipe-btn"
+          type="button"
+        // onClick={ handleClick }
+        >
+          Start Recipe
 
-      </button>
+        </button>
+      </Link>
     );
   };
 

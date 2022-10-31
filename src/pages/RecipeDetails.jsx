@@ -13,7 +13,6 @@ export default function RecipeDetails(props) {
           ? <MealRecipes props={ props } />
           : <DrinkRecipes props={ props } />
       }
-
     </div>
   );
 }
