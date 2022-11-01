@@ -53,7 +53,7 @@ export default function DrinkRecipes(props) {
         </p>))}
       <p data-testid="instructions">{drinkRecipe.strInstructions}</p>
       <ShareBtn />
-      <FavoriteBtn />
+      <FavoriteBtn drinkApi={ drinkRecipe } />
       <section>
         <MealCarousel />
       </section>
