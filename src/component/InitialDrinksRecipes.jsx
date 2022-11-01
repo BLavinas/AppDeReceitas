@@ -1,9 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import LoginContext from '../Context/LoginContext';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function InitialDrinksRecipes() {
-  const { initialDrinks } = useContext(LoginContext);
+  const [initialDrinks, setInitialDrinks] = useState([]);
   const [categoryDrink, setCategoryDrink] = useState([]);
+  const [newInititalDrink, setNewInitialDrink] = useState([]);
   const numberMaxArray = 11;
   const numberMaxCategory = 4;
 
@@ -26,6 +27,16 @@ function InitialDrinksRecipes() {
     });
 
   useEffect(() => {
+    const fetchInitialDrinks = async () => {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      const info = await response.json();
+      setInitialDrinks(info.drinks);
+      setNewInitialDrink(info.drinks);
+    };
+    fetchInitialDrinks();
+  }, []);
+
+  useEffect(() => {
     const fetchCategories = async () => {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
       const data = await response.json();
@@ -34,30 +45,51 @@ function InitialDrinksRecipes() {
     fetchCategories();
   }, []);
 
+  const fetchSelectedCategory = async (category) => {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+    const data = await response.json();
+    setInitialDrinks(data.drinks);
+  };
+
   return (
     <div>
-      <h2>Categorias</h2>
+      <section>
+        <h2>Categorias</h2>
+        {
+          arrayCategoryDrink.map((category) => (
+            <button
+              type="button"
+              key={ category.strCategory }
+              data-testid={ `${category.strCategory}-category-filter` }
+              onClick={ () => fetchSelectedCategory(category.strCategory) }
+            >
+              { category.strCategory }
+            </button>
+          ))
+        }
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ () => setInitialDrinks(newInititalDrink) }
+        >
+          All
+        </button>
+      </section>
       {
-        arrayCategoryDrink.map((category) => (
-          <button
-            type="button"
-            key={ category.strCategory }
-            data-testid={ `${category.strCategory}-category-filter` }
-          >
-            { category.strCategory }
-          </button>
-        ))
+        console.log(listDrinks)
       }
       {
         listDrinks.map((drink, index) => (
-          <section data-testid={ `${index}-recipe-card` } key={ drink.idDrink }>
-            <h3 data-testid={ `${index}-card-name` }>{ drink.strDrink }</h3>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ drink.strDrinkThumb }
-              alt={ drink.strDrink }
-            />
-          </section>
+          <Link key={ drink.idDrink } to={ `/drinks/${drink.idDrink}` }>
+            <section data-testid={ `${index}-recipe-card` }>
+              <h3 data-testid={ `${index}-card-name` }>{ drink.strDrink }</h3>
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ drink.strDrinkThumb }
+                alt={ drink.strDrink }
+              />
+            </section>
+          </Link>
         ))
       }
     </div>
