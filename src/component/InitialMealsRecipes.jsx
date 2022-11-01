@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function InitialMealsRecipes() {
   const [initialMeals, setInitialMeals] = useState([]);
@@ -77,14 +78,16 @@ function InitialMealsRecipes() {
 
       {
         listMeals.map((meal, index) => (
-          <section data-testid={ `${index}-recipe-card` } key={ meal.idMeal }>
-            <h2 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h2>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ meal.strMealThumb }
-              alt={ meal.strMeal }
-            />
-          </section>
+          <Link key={ meal.idMeal } to={ `/meals/${meal.idMeal}` }>
+            <section data-testid={ `${index}-recipe-card` }>
+              <h2 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h2>
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ meal.strMealThumb }
+                alt={ meal.strMeal }
+              />
+            </section>
+          </Link>
         ))
 
       }

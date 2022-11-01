@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function InitialDrinksRecipes() {
   const [initialDrinks, setInitialDrinks] = useState([]);
@@ -75,15 +76,20 @@ function InitialDrinksRecipes() {
         </button>
       </section>
       {
+        console.log(listDrinks)
+      }
+      {
         listDrinks.map((drink, index) => (
-          <section data-testid={ `${index}-recipe-card` } key={ drink.idDrink }>
-            <h3 data-testid={ `${index}-card-name` }>{ drink.strDrink }</h3>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ drink.strDrinkThumb }
-              alt={ drink.strDrink }
-            />
-          </section>
+          <Link key={ drink.idDrink } to={ `/drinks/${drink.idDrink}` }>
+            <section data-testid={ `${index}-recipe-card` }>
+              <h3 data-testid={ `${index}-card-name` }>{ drink.strDrink }</h3>
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ drink.strDrinkThumb }
+                alt={ drink.strDrink }
+              />
+            </section>
+          </Link>
         ))
       }
     </div>
