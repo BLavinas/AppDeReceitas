@@ -71,7 +71,7 @@ export default function MealRecipes(props) {
         title="Embedded youtube"
       />
       <ShareBtn />
-      <FavoriteBtn />
+      <FavoriteBtn mealApi={ mealRecipe } />
       <section>
         <DrinkCarousel />
       </section>
