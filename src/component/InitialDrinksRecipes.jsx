@@ -5,6 +5,7 @@ function InitialDrinksRecipes() {
   const [initialDrinks, setInitialDrinks] = useState([]);
   const [categoryDrink, setCategoryDrink] = useState([]);
   const [newInititalDrink, setNewInitialDrink] = useState([]);
+  const [selectedDrinkCategory, setSelectedDrinkCategory] = useState('');
   const numberMaxArray = 11;
   const numberMaxCategory = 4;
 
@@ -46,9 +47,14 @@ function InitialDrinksRecipes() {
   }, []);
 
   const fetchSelectedCategory = async (category) => {
-    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
-    const data = await response.json();
-    setInitialDrinks(data.drinks);
+    if (category !== selectedDrinkCategory) {
+      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+      const data = await response.json();
+      setInitialDrinks(data.drinks);
+      setSelectedDrinkCategory(category);
+    } else {
+      setInitialDrinks(newInititalDrink);
+    }
   };
 
   return (
@@ -75,9 +81,6 @@ function InitialDrinksRecipes() {
           All
         </button>
       </section>
-      {
-        console.log(listDrinks)
-      }
       {
         listDrinks.map((drink, index) => (
           <Link key={ drink.idDrink } to={ `/drinks/${drink.idDrink}` }>
