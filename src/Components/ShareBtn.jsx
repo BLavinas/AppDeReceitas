@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import shareBtn from '../images/shareIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
@@ -12,7 +12,7 @@ export default function ShareBtn() {
   return (
     <div>
       <button type="button" data-testid="share-btn" onClick={ handleClick }>
-        <img src={ shareBtn } alt="share-button" />
+        <img src={ shareIcon } alt="share-button" />
       </button>
       {linkCopied && <span>Link copied!</span>}
     </div>
