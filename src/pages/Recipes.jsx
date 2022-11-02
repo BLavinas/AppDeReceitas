@@ -9,14 +9,20 @@ export default function Recipes() {
   const history = useHistory();
   const { location: { pathname } } = history;
   const renderInitialRecipes = () => {
-    switch (pathname) {
-    case '/meals':
+    if (pathname === '/meals') {
       return <InitialMealsRecipes />;
-    case '/drinks':
-      return <InitialDrinksRecipes />;
-    default:
-      return null;
     }
+    if (pathname === '/drinks') {
+      return <InitialDrinksRecipes />;
+    }
+    // switch (pathname) {
+    // case '/meals':
+    //   return <InitialMealsRecipes />;
+    // case '/drinks':
+    //   return <InitialDrinksRecipes />;
+    // default:
+    //   return null;
+    // }
   };
   return (
     <div>
