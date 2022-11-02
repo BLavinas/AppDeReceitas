@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderDois from '../component/HeaderDois';
 import shareIcon from '../images/shareIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function DoneRecipes() {
   // const getDoneRecipes = [
@@ -29,6 +31,12 @@ function DoneRecipes() {
   // ];
 
   const getDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const handleClick = (type, id) => {
+    copy(`${window.location.origin}/${type}s/${id}`);
+    setLinkCopied(true);
+  };
 
   return (
     <div>
@@ -70,9 +78,11 @@ function DoneRecipes() {
             type="button"
             data-testid={ `${index}-horizontal-share-btn` }
             src={ shareIcon }
+            onClick={ () => handleClick(doneRecipe.type, doneRecipe.id) }
           >
             <img src={ shareIcon } alt="share-button" />
           </button>
+          {linkCopied && <span>Link copied!</span>}
         </section>
       ))}
     </div>
