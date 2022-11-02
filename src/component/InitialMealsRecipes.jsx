@@ -5,6 +5,7 @@ function InitialMealsRecipes() {
   const [initialMeals, setInitialMeals] = useState([]);
   const [categoryMeal, setCategoryMeal] = useState([]);
   const [newInititalMeal, setNewInitialMeals] = useState([]);
+  const [selectedMealCategory, setSelectedMealCategory] = useState('');
   const numberMaxArray = 11;
   const numberMaxCategory = 4;
 
@@ -46,9 +47,14 @@ function InitialMealsRecipes() {
   }, []);
 
   const fetchSelectedCategory = async (category) => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
-    const info = await response.json();
-    setInitialMeals(info.meals);
+    if (category !== selectedMealCategory) {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+      const info = await response.json();
+      setInitialMeals(info.meals);
+      setSelectedMealCategory(category);
+    } else {
+      setInitialMeals(newInititalMeal);
+    }
   };
 
   return (
@@ -66,6 +72,9 @@ function InitialMealsRecipes() {
               { category.strCategory }
             </button>
           ))
+        }
+        {
+          console.log(arrayCategoryMeal)
         }
         <button
           type="button"
