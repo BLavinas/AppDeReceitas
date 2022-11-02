@@ -1,15 +1,22 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render } from '@testing-library/react';
+import LoginProvider from '../Context/LoginProvider';
 
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({
+function renderWithRouterAndContext(component, path = '/') {
+  const history = createMemoryHistory({ initialEntries: [path] });
+
+  return {
     ...render(
-      <Router history={ history }>{component}</Router>,
+      <LoginProvider>
+        <Router history={ history }>
+          {component}
+        </Router>
+      </LoginProvider>,
     ),
     history,
-  });
-};
-export default renderWithRouter;
+  };
+}
+
+export default renderWithRouterAndContext;
