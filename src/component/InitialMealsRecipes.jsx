@@ -73,9 +73,6 @@ function InitialMealsRecipes() {
             </button>
           ))
         }
-        {
-          console.log(arrayCategoryMeal)
-        }
         <button
           type="button"
           data-testid="All-category-filter"
