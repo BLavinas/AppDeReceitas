@@ -32,7 +32,7 @@ function DoneRecipes() {
   // ];
   // localStorage.setItem('doneRecipes', JSON.stringify('getDoneRecipesMock'));
   const [getDoneRecipes, setGetDoneRecipes] = useState([]);
-  const [linkCopied, setLinkCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState('');
 
   useEffect(() => {
     const getDoneRecipesLocal = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -41,7 +41,7 @@ function DoneRecipes() {
 
   const handleClipBoard = (type, id) => {
     copy(`${window.location.origin}/${type}s/${id}`);
-    setLinkCopied(true);
+    setLinkCopied(id);
   };
 
   const handleFilter = ({ target }) => {
@@ -130,7 +130,7 @@ function DoneRecipes() {
           >
             <img src={ shareIcon } alt="share-button" />
           </button>
-          {linkCopied && <span>Link copied!</span>}
+          {linkCopied === doneRecipe.id && <span>Link copied!</span>}
         </section>
       ))}
     </div>

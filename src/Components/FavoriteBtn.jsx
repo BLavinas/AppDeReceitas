@@ -24,10 +24,10 @@ export default function FavoriteBtn(props) {
     const getFavoriteLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const splitPath = pathname.split('/');
     const recipeId = splitPath[2];
-    if (getFavoriteLocal.filter((element) => element.id !== recipeId)) {
-      localStorage.setItem('favoriteRecipes', JSON.stringify(getFavoriteLocal));
-      setIsFavorited(false);
-    }
+    const filteredFavorite = getFavoriteLocal
+      .filter((element) => element.id !== recipeId);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(filteredFavorite));
+    setIsFavorited(false);
   };
 
   useEffect(() => {
