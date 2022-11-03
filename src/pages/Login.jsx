@@ -19,7 +19,7 @@ function Login() {
   return (
     <section className="formulario">
       <form>
-        <h2>Login</h2>
+        <h2>ReceiTryber</h2>
 
         <label htmlFor="email">
           <input

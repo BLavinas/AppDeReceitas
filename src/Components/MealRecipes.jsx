@@ -6,6 +6,8 @@ import StartRecipeBtn from './StartRecipeBtn';
 import ShareBtn from './ShareBtn';
 import FavoriteBtn from './FavoriteBtn';
 
+import '../style/mealRecipes.css';
+
 export default function MealRecipes(props) {
   const [mealIngredients, setMealIngredients] = useState([]);
   const [ingredientsMeasure, setIngredientsMeasure] = useState([]);
@@ -40,12 +42,18 @@ export default function MealRecipes(props) {
     requestMealApi();
   }, []);
   return (
-    <div>
-      <h1 data-testid="recipe-title">{mealRecipe.strMeal}</h1>
+    <div className="Recipes-container">
+      <h1
+        data-testid="recipe-title"
+        className="Recipes-title"
+      >
+        {mealRecipe.strMeal}
+      </h1>
       <img
         data-testid="recipe-photo"
         src={ mealRecipe.strMealThumb }
         alt={ mealRecipe.strMeal }
+        className="RecipesMeals-img"
       />
       <p data-testid="recipe-category">{mealRecipe.strCategory}</p>
       {mealIngredients.map((ingredient, index) => (
@@ -56,6 +64,7 @@ export default function MealRecipes(props) {
         {mealRecipe.strInstructions}
       </p>
       <iframe
+        className="Recipes-video"
         data-testid="video"
         width="853"
         height="480"
@@ -70,12 +79,14 @@ export default function MealRecipes(props) {
         allowFullScreen
         title="Embedded youtube"
       />
-      <ShareBtn />
-      <FavoriteBtn mealApi={ mealRecipe } />
-      <section>
+      <div className="Recipes-button">
+        <ShareBtn />
+        <FavoriteBtn mealApi={ mealRecipe } />
+      </div>
+      <section className="Recipes-carrosel">
         <DrinkCarousel />
       </section>
-      <div>
+      <div className="startRecipes-meal">
         <StartRecipeBtn />
       </div>
     </div>
