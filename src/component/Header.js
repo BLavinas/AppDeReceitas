@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../Components/SearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+
+import '../style/header.css';
 
 function Header() {
   const [show, toggleShow] = useState(false);
   return (
-    <div>
-
-      <Link to="/profile">
-        <img
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="profileIcon"
-        />
-      </Link>
-      <div>
-
+    <div className="container-header">
+      <div className="main-header">
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="profileIcon"
+          />
+        </Link>
         <button
           onClick={ () => toggleShow(!show) }
           type="button"
@@ -28,6 +28,8 @@ function Header() {
             alt="searchIcon"
           />
         </button>
+      </div>
+      <div className="search-header">
         {show && <SearchBar />}
       </div>
     </div>
