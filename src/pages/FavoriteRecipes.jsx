@@ -72,7 +72,7 @@ function FavoriteRecipes() {
           Drinks
 
         </button>
-        {getFavoriteLocal.map((favoriteRecipe, index) => (
+        {getFavoriteLocal?.map((favoriteRecipe, index) => (
           <section key={ index }>
             <Link to={ `/${favoriteRecipe.type}s/${favoriteRecipe.id}` }>
               <img
