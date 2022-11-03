@@ -29,7 +29,7 @@ export default function Recipes() {
       <Header />
       <title data-testid="page-title" title="Meals">Meals</title>
       <title data-testid="page-title" title="Drinks">Drinks</title>
-      <span>Recipes</span>
+      {/* <span>Recipes</span> */}
       {
         renderInitialRecipes()
       }

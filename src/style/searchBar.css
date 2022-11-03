@@ -1,0 +1,47 @@
+.searchBar-container {
+  background-color: #f2f2f2;
+  margin: auto;
+  padding: 10px 0;
+  width: 360px;
+}
+
+.searchBar-input {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.searchBar-input input {
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  color: black;
+  height: 35px;
+  margin-left: 5px;
+  text-align: center;
+  width: 250px;
+}
+
+.searchBar-input button {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+}
+
+.searchBar-radioButton {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+  width: 300px;
+}
+
+.searchBar-radioButton label {
+  display: flex;
+  height: 25px;
+  justify-items: center;
+}
+
+.searchBar-radioButton label input {
+  margin-right: 5px;
+}
+

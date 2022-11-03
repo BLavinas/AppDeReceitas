@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import '../style/inicialMeals.css';
+
 function InitialMealsRecipes() {
   const [initialMeals, setInitialMeals] = useState([]);
   const [categoryMeal, setCategoryMeal] = useState([]);
@@ -58,9 +60,9 @@ function InitialMealsRecipes() {
   };
 
   return (
-    <div>
-      <section>
-        <h2>Categorias</h2>
+    <div className="inicialMeals-container">
+      <section className="inicialMeals-seletores">
+        {/* <h2>Categorias</h2> */}
         {
           arrayCategoryMeal.map((category) => (
             <button
@@ -81,22 +83,26 @@ function InitialMealsRecipes() {
           All
         </button>
       </section>
+      <main className="main-content-meals">
+        {
+          listMeals.map((meal, index) => (
+            <Link key={ meal.idMeal } to={ `/meals/${meal.idMeal}` }>
+              <section
+                data-testid={ `${index}-recipe-card` }
+                className="card-meals"
+              >
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ meal.strMealThumb }
+                  alt={ meal.strMeal }
+                />
+                <h2 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h2>
+              </section>
+            </Link>
+          ))
+        }
+      </main>
 
-      {
-        listMeals.map((meal, index) => (
-          <Link key={ meal.idMeal } to={ `/meals/${meal.idMeal}` }>
-            <section data-testid={ `${index}-recipe-card` }>
-              <h2 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h2>
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ meal.strMealThumb }
-                alt={ meal.strMeal }
-              />
-            </section>
-          </Link>
-        ))
-
-      }
     </div>
   );
 }

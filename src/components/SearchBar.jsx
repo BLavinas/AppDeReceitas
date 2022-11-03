@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import '../style/searchBar.css';
+
 export default function SearchBar() {
   const [filterApi, setFilterApi] = useState('');
   const [searchinput, setSearchInput] = useState('');
@@ -77,57 +79,59 @@ export default function SearchBar() {
     ? requestMealApi(searchinput) : requestDrinkApi(searchinput));
 
   return (
-    <div>
+    <div className="searchBar-container">
       <form>
-        <label htmlFor="search">
-          Search
-          <input
-            data-testid="search-input"
-            type="text"
-            id="search"
-            placeholder="Faça uma busca"
-            value={ searchinput }
-            onChange={ handleSearchInput }
-          />
-        </label>
-
-        <label htmlFor="ingredient">
-          Ingredient
-          <input
-            type="radio"
-            data-testid="ingredient-search-radio"
-            name="filter-radio"
-            value="ingredient"
-            onChange={ handleIngredientInput }
-          />
-        </label>
-        <label htmlFor="name">
-          Name
-          <input
-            type="radio"
-            data-testid="name-search-radio"
-            name="filter-radio"
-            value="name"
-            onChange={ handleNameInput }
-          />
-        </label>
-        <label htmlFor="firstletter">
-          First-letter
-          <input
-            type="radio"
-            data-testid="first-letter-search-radio"
-            name="filter-radio"
-            value="letter"
-            onChange={ handleFirstLetterInput }
-          />
-        </label>
-        <button
-          type="button"
-          onClick={ handleClick }
-          data-testid="exec-search-btn"
-        >
-          Search
-        </button>
+        <div className="searchBar-input">
+          <label htmlFor="search">
+            <input
+              data-testid="search-input"
+              type="text"
+              id="search"
+              placeholder="Faça uma busca"
+              value={ searchinput }
+              onChange={ handleSearchInput }
+            />
+          </label>
+          <button
+            type="button"
+            onClick={ handleClick }
+            data-testid="exec-search-btn"
+          >
+            Search
+          </button>
+        </div>
+        <div className="searchBar-radioButton">
+          <label htmlFor="ingredient">
+            <input
+              type="radio"
+              data-testid="ingredient-search-radio"
+              name="filter-radio"
+              value="ingredient"
+              onChange={ handleIngredientInput }
+            />
+            Ingredient
+          </label>
+          <label htmlFor="name">
+            <input
+              type="radio"
+              data-testid="name-search-radio"
+              name="filter-radio"
+              value="name"
+              onChange={ handleNameInput }
+            />
+            Name
+          </label>
+          <label htmlFor="firstletter">
+            <input
+              type="radio"
+              data-testid="first-letter-search-radio"
+              name="filter-radio"
+              value="letter"
+              onChange={ handleFirstLetterInput }
+            />
+            First-letter
+          </label>
+        </div>
       </form>
     </div>
   );
