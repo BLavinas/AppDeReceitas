@@ -18,14 +18,20 @@
   padding: 10px;
 }
 
-.container-profile button:hover {
+.container-profile .button-logout {
   background-color: orange;
   color: white;
-  transform: scaleX(1.2);
-  transition: 0.5s;
 }
 
-.container-profile .button-logout {
-  background-color: red;
+.container-profile .button-logout:hover {
+  background-color: black;
   color: white;
+  transition: 1s;
+}
+
+@media screen and ( min-width : 720px ) {
+
+  .container-profile {
+    width: 720px;
+  }
 }

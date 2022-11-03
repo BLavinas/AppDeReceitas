@@ -4,6 +4,8 @@ import HeaderDois from '../component/HeaderDois';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 
+import '../style/favoriteRecipes.css';
+
 const copy = require('clipboard-copy');
 
 function FavoriteRecipes() {
@@ -44,81 +46,95 @@ function FavoriteRecipes() {
     <div>
       <HeaderDois />
       <title data-testid="page-title" title="Favorite Recipes">Favorite Recipes</title>
-      <div>
-        <button
-          onClick={ handleFilter }
-          name="All"
-          type="button"
-          data-testid="filter-by-all-btn"
-        >
-          All
+      <div className="container-favoriteRecipes">
+        <div className="filters-favoriteRecipes">
+          <button
+            onClick={ handleFilter }
+            name="All"
+            type="button"
+            data-testid="filter-by-all-btn"
+          >
+            All
 
-        </button>
-        <button
-          onClick={ handleFilter }
-          name="meal"
-          type="button"
-          data-testid="filter-by-meal-btn"
-        >
-          Meals
+          </button>
+          <button
+            onClick={ handleFilter }
+            name="meal"
+            type="button"
+            data-testid="filter-by-meal-btn"
+          >
+            Meals
 
-        </button>
-        <button
-          onClick={ handleFilter }
-          name="drink"
-          type="button"
-          data-testid="filter-by-drink-btn"
-        >
-          Drinks
+          </button>
+          <button
+            onClick={ handleFilter }
+            name="drink"
+            type="button"
+            data-testid="filter-by-drink-btn"
+          >
+            Drinks
 
-        </button>
+          </button>
+        </div>
         {getFavoriteLocal?.map((favoriteRecipe, index) => (
-          <section key={ index }>
+          <section
+            key={ index }
+            className="favoriteRecipe-section"
+          >
             <Link to={ `/${favoriteRecipe.type}s/${favoriteRecipe.id}` }>
+              <p
+                data-testid={ `${index}-horizontal-name` }
+                className="favoriteRecipes-name"
+              >
+                {favoriteRecipe.name}
+              </p>
               <img
+                className="favoriteRecipes-img"
                 src={ favoriteRecipe.image }
                 data-testid={ `${index}-horizontal-image` }
                 alt={ favoriteRecipe.name }
                 width="150px"
               />
-              <p data-testid={ `${index}-horizontal-name` }>{favoriteRecipe.name}</p>
             </Link>
-            {favoriteRecipe.type === 'meal'
-              ? (
-                <p data-testid={ `${index}-horizontal-top-text` }>
-                  {`${favoriteRecipe.nationality} - ${favoriteRecipe.category}`}
-                </p>
-              )
-              : (
-                <p data-testid={ `${index}-horizontal-top-text` }>
-                  {favoriteRecipe.alcoholicOrNot}
-                </p>
-              )}
-
-            <button
-              type="button"
-              data-testid={ `${index}-horizontal-favorite-btn` }
-              src={ blackHeart }
-              onClick={ () => removeFavorite(favoriteRecipe.id) }
-            >
-              <img src={ blackHeart } alt="unfavorite-button" />
-            </button>
-
-            <button
-              type="button"
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareIcon }
-              onClick={ () => handleClipBoard(favoriteRecipe.type, favoriteRecipe.id) }
-
-            >
-              <img src={ shareIcon } alt="share-button" />
-            </button>
-            {linkCopied === favoriteRecipe.id && <span>Link copied!</span>}
+            <div className="favoriteRecipe-details">
+              <div className="favoriteRecipe-descripiton">
+                {favoriteRecipe.type === 'meal'
+                  ? (
+                    <p data-testid={ `${index}-horizontal-top-text` }>
+                      {`${favoriteRecipe.nationality} - ${favoriteRecipe.category}`}
+                    </p>
+                  )
+                  : (
+                    <p data-testid={ `${index}-horizontal-top-text` }>
+                      {favoriteRecipe.alcoholicOrNot}
+                    </p>
+                  )}
+              </div>
+              <div className="favoriteRecipes-buttons">
+                <button
+                  type="button"
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  src={ blackHeart }
+                  onClick={ () => removeFavorite(favoriteRecipe.id) }
+                >
+                  <img src={ blackHeart } alt="unfavorite-button" />
+                </button>
+                <button
+                  type="button"
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  src={ shareIcon }
+                  onClick={
+                    () => handleClipBoard(favoriteRecipe.type, favoriteRecipe.id)
+                  }
+                >
+                  <img src={ shareIcon } alt="share-button" />
+                </button>
+                {linkCopied === favoriteRecipe.id && <span>Link copied!</span>}
+              </div>
+            </div>
           </section>
         ))}
-
       </div>
-
     </div>
   );
 }
