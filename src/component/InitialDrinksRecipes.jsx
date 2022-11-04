@@ -33,6 +33,7 @@ function InitialDrinksRecipes() {
     const fetchInitialDrinks = async () => {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
       const info = await response.json();
+      console.log(info);
       setInitialDrinks(info.drinks);
       setNewInitialDrink(info.drinks);
     };
@@ -50,10 +51,10 @@ function InitialDrinksRecipes() {
 
   const fetchSelectedCategory = async (category) => {
     if (category !== selectedDrinkCategory) {
+      setSelectedDrinkCategory(category);
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
       const data = await response.json();
       setInitialDrinks(data.drinks);
-      setSelectedDrinkCategory(category);
     } else {
       setInitialDrinks(newInititalDrink);
     }
