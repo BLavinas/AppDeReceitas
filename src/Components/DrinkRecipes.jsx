@@ -38,6 +38,7 @@ export default function DrinkRecipes(props) {
     };
     requestDrinkApi();
   }, [setDrinkRecipe, props]);
+
   return (
     <div className="RecipesDrinks-container">
       <h1
@@ -76,7 +77,7 @@ export default function DrinkRecipes(props) {
           Finish Recipe
 
         </button>
-        ;
+      </div>
       <div className="startRecipes-Drinks">
         <StartRecipeBtn />
       </div>
