@@ -1,13 +1,9 @@
-.generalFooter {
+.container-header {
   background-color: white;
-  bottom: 0;
-  margin: auto;
-  position: fixed;
   width: 100%;
 }
 
-.Container-footer {
-  align-items: center;
+.main-header {
   display: flex;
   justify-content: space-between;
   margin: auto;
@@ -15,17 +11,22 @@
   width: 360px;
 }
 
-.Container-footer img {
-  width: 30px;
+.main-header img {
+  width: 25px;
+}
+
+.main-header button {
+  background-color: white;
+  border: none;
 }
 
 @media screen and ( min-width : 720px ) {
 
-  .Container-footer {
+  .main-header {
     height: 60px;
   }
 
-  .Container-footer img {
+  .main-header img {
     width: 40px;
   }
 }

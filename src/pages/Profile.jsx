@@ -23,7 +23,6 @@ export default function Profile() {
 
       <HeaderDois />
       <title data-testid="page-title" title="Profile">Profile</title>
-      <div>Profile</div>
       <div className="container-profile">
         <h2 data-testid="profile-email">
           { lsEmail }

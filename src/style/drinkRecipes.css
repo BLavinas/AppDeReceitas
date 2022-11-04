@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap') ;
+
+* {
+  font-family: Inconsolata , monospace;
+}
+
+p {
+  padding-left: 10px;
+}
+
+
+.RecipesDrinks-container {
+  background-color: #f2f2f2;
+  margin: auto;
+  width: 360px;
+}
+
+.RecipesDrinks-title {
+  padding: 10px;
+}
+
+.RecipesDrinks-img img {
+  height: auto;
+  margin: auto;
+  max-height: 400px;
+  max-width: 360px;
+  padding-bottom: 20px;
+  width: auto;
+}
+
+.RecipesDrinks-video {
+  height: 400px;
+  margin: auto;
+  width: 360px;
+}
+
+.RecipesDrinks-button {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 10px;
+  width: 100px;
+}
+
+.RecipesDrinks-button button {
+  border: none;
+}
+
+.RecipesDrinks-carrosel {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 360px;
+}
+
+.startRecipes-Drinks button {
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  padding: 7px;
+}
+
+
+@media screen and ( min-width : 720px ) {
+
+  .RecipesDrinks-container {
+    background-color: #f2f2f2;
+    font-size: 20px;
+    margin: auto;
+    width: 700px;
+  }
+
+  .RecipesDrinks-img {
+    width: 300px;
+  }
+
+  .RecipesDrinks-img img {
+    width: 300px;
+  }
+
+  .Recipes-video {
+    height: 400px;
+    margin: auto;
+    width: 100%;
+  }
+}

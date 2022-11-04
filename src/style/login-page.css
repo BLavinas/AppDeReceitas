@@ -1,60 +1,76 @@
-.formulario {
-  align-items: center;
-  background-color: orange;
-  border-radius: 14px;
-  box-shadow: 5px 5px 5px rgba(18, 13, 67, 0.35);
-  color: white;
-  justify-content: center;
-  margin: auto;
-  margin-top: 50px;
-  width: 300px;
+@media screen and ( min-width : 360px ) {
+
+  .formulario {
+    background-color: #f2f2f2;
+    display: flex;
+    height: 640px;
+    justify-items: center;
+    width: 360px;
+  }
+
+  .formulario form {
+    align-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: space-between;
+    margin: auto;
+    padding: 25px;
+    width: 300px;
+  }
+
+  .formulario form label {
+    align-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  .formulario form label input {
+    border: 1px solid;
+    border-radius: 5px;
+    height: 35px;
+    padding: 10px;
+    width: 250px;
+  }
+
+  .formulario .botao-form:disabled {
+    background-color: grey;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    height: 35px;
+    transition: 0.6s;
+    width: 200px;
+  }
+
+  .formulario .botao-form:enabled {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: orange;
+    height: 35px;
+    transition: 0.6s;
+    width: 200px;
+  }
 }
 
-.formulario form {
-  align-content: space-between;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 400px;
-  justify-content: space-between;
-  padding: 25px;
-}
+@media screen and ( min-width : 720px ) {
 
-.formulario form label {
-  align-content: space-between;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-}
+  .formulario {
+    background-color: white;
+    height: 940px;
+    margin: auto;
+    width: 700px;
+  }
 
-.formulario form label input {
-  border: 1px solid;
-  border-radius: 5px;
-  height: 35px;
-  padding: 10px;
-  width: 250px;
-}
-
-.formulario form input :marker {
-  border: 3px solid salmon;
-}
-
-.formulario .botao-form:disabled {
-  background-color: grey;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  transition: 0.6s;
-  width: 200px;
-}
-
-.formulario .botao-form:enabled {
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px rgba(18, 13, 67, 0.35);
-  color: orange;
-  transition: 0.6s;
-  width: 200px;
+  .formulario form {
+    border-radius: 0;
+    height: 400px;
+    width: 100%;
+  }
 }

@@ -1,0 +1,91 @@
+.container-favoriteRecipes {
+  background-color: #f2f2f2;
+  margin: auto;
+  width: 360px;
+}
+
+.filters-favoriteRecipes {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  padding: 10px;
+  width: 250px;
+}
+
+.filters-favoriteRecipes button {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.favoriteRecipe-section {
+  background-color: white;
+}
+
+.favoriteRecipes-name {
+  color: black;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.favoriteRecipes-img {
+  border-radius: 10px 10px 0 0;
+  height: 200px;
+  object-fit: cover;
+  width: 360px;
+}
+
+.favoriteRecipe-details {
+  align-items: center;
+  background-color: orange;
+  color: white;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px;
+  width: 360px;
+}
+
+.favoriteRecipes-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+}
+
+.favoriteRecipes-buttons button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+@media screen and ( min-width : 720px ) {
+
+  .container-favoriteRecipes {
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 700px;
+  }
+
+  .favoriteRecipes-img {
+    width: 700px;
+  }
+
+  .favoriteRecipe-details {
+    font-size: 20px;
+    width: 700px;
+  }
+
+  .favoriteRecipes-buttons button {
+    height: 40px;
+    width: 60px;
+  }
+
+  .filters-favoriteRecipes {
+    height: 60px;
+  }
+
+  .favoriteRecipes-name {
+    color: black;
+    font-size: 30px;
+  }
+}

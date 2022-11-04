@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import '../style/inicialDrinks.css';
+
 function InitialDrinksRecipes() {
   const [initialDrinks, setInitialDrinks] = useState([]);
   const [categoryDrink, setCategoryDrink] = useState([]);
@@ -59,9 +61,9 @@ function InitialDrinksRecipes() {
   };
 
   return (
-    <div>
-      <section>
-        <h2>Categorias</h2>
+    <div className="inicialdrinks-container">
+      <section className="inicialdrinks-seletores">
+        {/* <h2>Categorias</h2> */}
         {
           arrayCategoryDrink.map((category) => (
             <button
@@ -82,20 +84,25 @@ function InitialDrinksRecipes() {
           All
         </button>
       </section>
-      {
-        listDrinks.map((drink, index) => (
-          <Link key={ drink.idDrink } to={ `/drinks/${drink.idDrink}` }>
-            <section data-testid={ `${index}-recipe-card` }>
-              <h3 data-testid={ `${index}-card-name` }>{ drink.strDrink }</h3>
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ drink.strDrinkThumb }
-                alt={ drink.strDrink }
-              />
-            </section>
-          </Link>
-        ))
-      }
+      <main className="main-content-drinks">
+        {
+          listDrinks.map((drink, index) => (
+            <Link key={ drink.idDrink } to={ `/drinks/${drink.idDrink}` }>
+              <section
+                data-testid={ `${index}-recipe-card` }
+                className="card-drinks"
+              >
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ drink.strDrinkThumb }
+                  alt={ drink.strDrink }
+                />
+                <h2 data-testid={ `${index}-card-name` }>{ drink.strDrink }</h2>
+              </section>
+            </Link>
+          ))
+        }
+      </main>
     </div>
   );
 }

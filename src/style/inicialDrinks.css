@@ -1,0 +1,83 @@
+.inicialdrinks-container {
+  background-color: #f2f2f2;
+  margin: auto;
+  padding-top: 10px;
+  width: 360px;
+}
+
+.inicialdrinks-seletores {
+  margin: auto;
+  width: 270px;
+}
+
+.inicialdrinks-seletores button {
+  background-color: white;
+  font-size: 15px;
+  height: 30px;
+  margin: 5px;
+}
+
+.main-content-drinks {
+  width: 360px;
+}
+
+.card-drinks {
+  margin: auto;
+  padding-top: 20px;
+  position: relative;
+  width: 300px;
+}
+
+.main-content-drinks img {
+  border-radius: 30px;
+  height: auto;
+  margin: auto;
+  max-height: 360px;
+  max-width: 300px;
+  width: auto;
+}
+
+.main-content-drinks h2 {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+  bottom: -20px;
+  color: black;
+  display: inline;
+  left: 50%;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+@media screen and ( min-width : 720px ) {
+
+  .inicialdrinks-container {
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 700px;
+  }
+
+  .main-content-drinks {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 700px;
+  }
+
+  .inicialdrinks-seletores {
+    background-color: #f2f2f2;
+    border-bottom: 3px dotted black;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 20px 5px;
+    width: 600px;
+  }
+
+  .inicialdrinks-seletores button {
+    font-size: 15px;
+    height: 40px;
+  }
+}

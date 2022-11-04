@@ -1,32 +1,37 @@
 .container-profile {
   align-content: space-between;
   align-items: center;
+  background-color: #f2f2f2;
   display: flex;
   flex-direction: column;
   height: 400px;
   justify-content: space-between;
   margin: auto;
-  padding-top: 30px;
-  width: 200px;
+  padding: 30px;
+  width: 360px;
 }
 
 .container-profile button {
   background-color: white;
-  border: 1px solid orange;
+  border: none;
   border-radius: 5px;
-  padding: 3px;
+  padding: 10px;
 }
 
-.container-profile button:hover {
+.container-profile .button-logout {
   background-color: orange;
   color: white;
-  transform: scaleX(1.2);
-  transition: 0.5s;
 }
 
 .container-profile .button-logout:hover {
-  background-color: red;
+  background-color: black;
   color: white;
-  transform: scaleX(1.2);
-  transition: 0.5s;
+  transition: 1s;
+}
+
+@media screen and ( min-width : 720px ) {
+
+  .container-profile {
+    width: 720px;
+  }
 }
