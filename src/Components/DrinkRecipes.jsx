@@ -6,6 +6,8 @@ import StartRecipeBtn from './StartRecipeBtn';
 import ShareBtn from './ShareBtn';
 import FavoriteBtn from './FavoriteBtn';
 
+import '../style/drinkRecipes.css';
+
 export default function DrinkRecipes(props) {
   const [drinkIngredients, setDrinkIngredients] = useState([]);
   const [ingredientsMeasure, setIngredientsMeasure] = useState([]);
@@ -37,13 +39,20 @@ export default function DrinkRecipes(props) {
     requestDrinkApi();
   }, [setDrinkRecipe, props]);
   return (
-    <div>
-      <h1 data-testid="recipe-title">{drinkRecipe.strDrink}</h1>
-      <img
-        data-testid="recipe-photo"
-        src={ drinkRecipe.strDrinkThumb }
-        alt={ drinkRecipe.strDrink }
-      />
+    <div className="RecipesDrinks-container">
+      <h1
+        data-testid="recipe-title"
+        className="RecipesDrinks-title"
+      >
+        {drinkRecipe.strDrink}
+      </h1>
+      <div className="RecipesDrinks-img">
+        <img
+          data-testid="recipe-photo"
+          src={ drinkRecipe.strDrinkThumb }
+          alt={ drinkRecipe.strDrink }
+        />
+      </div>
       <p data-testid="recipe-category">
         {drinkRecipe.strAlcoholic}
       </p>
@@ -52,8 +61,10 @@ export default function DrinkRecipes(props) {
           {`${ingredient} ${ingredientsMeasure[index]}`}
         </p>))}
       <p data-testid="instructions">{drinkRecipe.strInstructions}</p>
-      <ShareBtn />
-      <FavoriteBtn drinkApi={ drinkRecipe } />
+      <div className="RecipesDrinks-button">
+        <ShareBtn />
+        <FavoriteBtn drinkApi={ drinkRecipe } />
+      </div>
       <section>
         <MealCarousel />
       </section>
@@ -66,6 +77,7 @@ export default function DrinkRecipes(props) {
 
         </button>
         ;
+      <div className="startRecipes-Drinks">
         <StartRecipeBtn />
       </div>
     </div>

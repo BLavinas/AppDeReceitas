@@ -1,10 +1,13 @@
 .generalFooter {
   background-color: white;
   bottom: 0;
+  margin: auto;
   position: fixed;
+  width: 100%;
 }
 
 .Container-footer {
+  align-items: center;
   display: flex;
   justify-content: space-between;
   margin: auto;
@@ -14,4 +17,15 @@
 
 .Container-footer img {
   width: 30px;
+}
+
+@media screen and ( min-width : 720px ) {
+
+  .Container-footer {
+    height: 60px;
+  }
+
+  .Container-footer img {
+    width: 40px;
+  }
 }

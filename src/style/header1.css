@@ -1,0 +1,16 @@
+.container-header1 {
+  width: 100%;
+}
+
+.header1 {
+  margin: auto;
+  padding: 10px;
+  width: 360px;
+}
+
+@media screen and ( min-width : 720px ) {
+
+  .header1 {
+    height: 50px;
+  }
+}

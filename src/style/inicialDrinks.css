@@ -50,3 +50,34 @@
   text-align: center;
   transform: translateX(-50%);
 }
+
+@media screen and ( min-width : 720px ) {
+
+  .inicialdrinks-container {
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 700px;
+  }
+
+  .main-content-drinks {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 700px;
+  }
+
+  .inicialdrinks-seletores {
+    background-color: #f2f2f2;
+    border-bottom: 3px dotted black;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 20px 5px;
+    width: 600px;
+  }
+
+  .inicialdrinks-seletores button {
+    font-size: 15px;
+    height: 40px;
+  }
+}
