@@ -38,7 +38,7 @@ export default function MealRecipes(props) {
       setYoutubeId(getYoutubeId);
     };
     requestMealApi();
-  }, []);
+  }, [mealRecipe, props, setMealRecipe]);
   return (
     <div>
       <h1 data-testid="recipe-title">{mealRecipe.strMeal}</h1>
@@ -76,6 +76,14 @@ export default function MealRecipes(props) {
         <DrinkCarousel />
       </section>
       <div>
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+        >
+          Finish Recipe
+
+        </button>
+        ;
         <StartRecipeBtn />
       </div>
     </div>
