@@ -47,11 +47,12 @@ function InitialMealsRecipes() {
   }, []);
 
   const fetchSelectedCategory = async (category) => {
+    console.log(category, selectedMealCategory);
     if (category !== selectedMealCategory) {
+      setSelectedMealCategory(category);
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
       const info = await response.json();
       setInitialMeals(info.meals);
-      setSelectedMealCategory(category);
     } else {
       setInitialMeals(newInititalMeal);
     }
