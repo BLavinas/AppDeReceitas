@@ -40,7 +40,7 @@ export default function MealRecipes(props) {
       setYoutubeId(getYoutubeId);
     };
     requestMealApi();
-  }, []);
+  }, [mealRecipe, props, setMealRecipe]);
   return (
     <div className="Recipes-container">
       <h1
@@ -86,6 +86,15 @@ export default function MealRecipes(props) {
       <section className="Recipes-carrosel">
         <DrinkCarousel />
       </section>
+      <div>
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+        >
+          Finish Recipe
+
+        </button>
+        ;
       <div className="startRecipes-meal">
         <StartRecipeBtn />
       </div>

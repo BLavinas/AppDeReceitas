@@ -37,7 +37,7 @@ export default function DrinkRecipes(props) {
       setIngredientsMeasure(measureIngredient);
     };
     requestDrinkApi();
-  }, []);
+  }, [setDrinkRecipe, props]);
   return (
     <div className="RecipesDrinks-container">
       <h1
@@ -68,6 +68,15 @@ export default function DrinkRecipes(props) {
       <section>
         <MealCarousel />
       </section>
+      <div>
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+        >
+          Finish Recipe
+
+        </button>
+        ;
       <div className="startRecipes-Drinks">
         <StartRecipeBtn />
       </div>
