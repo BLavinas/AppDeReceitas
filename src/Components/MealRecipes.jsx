@@ -94,7 +94,7 @@ export default function MealRecipes(props) {
           Finish Recipe
 
         </button>
-        ;
+      </div>
       <div className="startRecipes-meal">
         <StartRecipeBtn />
       </div>
