@@ -58,9 +58,22 @@ export default function DrinkRecipes(props) {
         {drinkRecipe.strAlcoholic}
       </p>
       {drinkIngredients.map((ingredient, index) => (
-        <p key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
-          {`${ingredient} ${ingredientsMeasure[index]}`}
-        </p>))}
+        <div
+          data-testid={ `${index}-ingredient-name-and-measure` }
+          key={ index }
+        >
+          <label
+            htmlFor="ingredientes"
+            data-testid={ `${index}-ingredient-step` }
+          >
+            <input
+              data-testid="ingredient-step"
+              name="ingredientes"
+              type="checkbox"
+            />
+            {`${ingredient} ${ingredientsMeasure[index]}`}
+          </label>
+        </div>))}
       <p data-testid="instructions">{drinkRecipe.strInstructions}</p>
       <div className="RecipesDrinks-button">
         <ShareBtn />
