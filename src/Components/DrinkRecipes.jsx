@@ -73,34 +73,39 @@ export default function DrinkRecipes(props) {
       <form>
         {drinkIngredients.map((ingredient, index) => (
           <div
-            data-testid={
-              `${index}-ingredient-name-and-measure ${index}-ingredient-step`
-            }
             key={ index[0] }
+            data-testid={
+              `${index}-ingredient-name-and-measure`
+            }
           >
-            <input
-              id={ index[0] }
-              type="checkbox"
-              name={ index[0] }
-              onClick={ () => checked() }
-            />
+            <div
+              data-testid={ `${index}-ingredient-step` }
+            >
+
+              <input
+                type="checkbox"
+                id={ index[0] }
+                name={ index[0] }
+                onClick={ () => checked() }
+              />
+            </div>
             <label
               key={ index[0] }
               htmlFor={ index[0] }
             >
               {`${ingredient} ${ingredientsMeasure[index]}`}
             </label>
-          </div>
-        ))}
-        <button
-          type="button"
-          data-testid="finish-recipe-btn"
-          disabled={ disable }
-        >
+          </div>))}
+        <div>
+          <button
+            type="button"
+            data-testid="finish-recipe-btn"
+            disabled={ disable }
+          >
+            Finish Recipe
 
-          Finish Recipe
-
-        </button>
+          </button>
+        </div>
       </form>
       <p data-testid="instructions">{drinkRecipe.strInstructions}</p>
       <div className="RecipesDrinks-button">

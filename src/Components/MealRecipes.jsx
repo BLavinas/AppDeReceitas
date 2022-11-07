@@ -72,17 +72,22 @@ export default function MealRecipes(props) {
       <p data-testid="recipe-category">{mealRecipe.strCategory}</p>
       {mealIngredients.map((ingredient, index) => (
         <div
-          data-testid={
-            `${index}-ingredient-name-and-measure ${index}-ingredient-step`
-          }
           key={ index[0] }
+          data-testid={
+            `${index}-ingredient-name-and-measure`
+          }
         >
-          <input
-            id={ index[0] }
-            type="checkbox"
-            name={ index[0] }
-            onClick={ () => checked() }
-          />
+          <div
+            data-testid={ `${index}-ingredient-step` }
+          >
+
+            <input
+              type="checkbox"
+              id={ index[0] }
+              name={ index[0] }
+              onClick={ () => checked() }
+            />
+          </div>
           <label
             key={ index[0] }
             htmlFor={ index[0] }
