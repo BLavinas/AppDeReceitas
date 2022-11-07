@@ -87,14 +87,15 @@ export default function DrinkRecipes(props) {
                 id={ index[0] }
                 name={ index[0] }
                 onClick={ () => checked() }
+                className="risco"
               />
+              <label
+                key={ index[0] }
+                htmlFor={ index[0] }
+              >
+                {`${ingredient} ${ingredientsMeasure[index]}`}
+              </label>
             </div>
-            <label
-              key={ index[0] }
-              htmlFor={ index[0] }
-            >
-              {`${ingredient} ${ingredientsMeasure[index]}`}
-            </label>
           </div>))}
         <div>
           <button

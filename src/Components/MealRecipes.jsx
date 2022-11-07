@@ -80,20 +80,20 @@ export default function MealRecipes(props) {
           <div
             data-testid={ `${index}-ingredient-step` }
           >
-
             <input
+              className="risco"
               type="checkbox"
               id={ index[0] }
               name={ index[0] }
               onClick={ () => checked() }
             />
+            <label
+              key={ index[0] }
+              htmlFor={ index[0] }
+            >
+              {`${ingredient} ${ingredientsMeasure[index]}`}
+            </label>
           </div>
-          <label
-            key={ index[0] }
-            htmlFor={ index[0] }
-          >
-            {`${ingredient} ${ingredientsMeasure[index]}`}
-          </label>
         </div>))}
       <div>
         <button
