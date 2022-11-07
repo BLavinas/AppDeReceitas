@@ -14,6 +14,20 @@ export default function MealRecipes(props) {
   const [youtubeId, setYoutubeId] = useState([]);
   const { setMealRecipe, mealRecipe } = useContext(LoginContext);
 
+  // logica de desabilitar botão
+  const [disable, setDisable] = React.useState(true);
+
+  const checked = () => {
+    const requi39 = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (requi39.length === ingredientsMeasure.length) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  };
+  // fim da logica de desabilitar botão
+  // https://flexiple.com/javascript/disable-button-javascript/ Requisito 39
+
   useEffect(() => {
     const requestMealApi = async () => {
       const { props: { match: { params: { id } } } } = props;
@@ -58,21 +72,34 @@ export default function MealRecipes(props) {
       <p data-testid="recipe-category">{mealRecipe.strCategory}</p>
       {mealIngredients.map((ingredient, index) => (
         <div
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
+          data-testid={
+            `${index}-ingredient-name-and-measure ${index}-ingredient-step`
+          }
+          key={ index[0] }
         >
+          <input
+            id={ index[0] }
+            type="checkbox"
+            name={ index[0] }
+            onClick={ () => checked() }
+          />
           <label
-            htmlFor="ingredientes"
-            data-testid={ `${index}-ingredient-step` }
+            key={ index[0] }
+            htmlFor={ index[0] }
           >
-            <input
-              data-testid="ingredient-step"
-              name="ingredientes"
-              type="checkbox"
-            />
             {`${ingredient} ${ingredientsMeasure[index]}`}
           </label>
         </div>))}
+      <div>
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+          disabled={ disable }
+        >
+          Finish Recipe
+
+        </button>
+      </div>
       <p data-testid="instructions">
         {mealRecipe.strInstructions}
       </p>
@@ -99,15 +126,6 @@ export default function MealRecipes(props) {
       <section className="Recipes-carrosel">
         <DrinkCarousel />
       </section>
-      <div>
-        <button
-          type="button"
-          data-testid="finish-recipe-btn"
-        >
-          Finish Recipe
-
-        </button>
-      </div>
       <div className="startRecipes-meal">
         <StartRecipeBtn />
       </div>

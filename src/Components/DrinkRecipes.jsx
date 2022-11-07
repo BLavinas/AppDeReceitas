@@ -13,6 +13,19 @@ export default function DrinkRecipes(props) {
   const [ingredientsMeasure, setIngredientsMeasure] = useState([]);
   const { drinkRecipe, setDrinkRecipe } = useContext(LoginContext);
 
+  // logica de desabilitar botão
+  const [disable, setDisable] = React.useState(true);
+
+  const checked = () => {
+    const requi39 = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (requi39.length === ingredientsMeasure.length) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  };
+  // fim da logica de desabilitar botão
+
   useEffect(() => {
     const requestDrinkApi = async () => {
       const { props: { match: { params: { id } } } } = props;
@@ -57,23 +70,38 @@ export default function DrinkRecipes(props) {
       <p data-testid="recipe-category">
         {drinkRecipe.strAlcoholic}
       </p>
-      {drinkIngredients.map((ingredient, index) => (
-        <div
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
-        >
-          <label
-            htmlFor="ingredientes"
-            data-testid={ `${index}-ingredient-step` }
+      <form>
+        {drinkIngredients.map((ingredient, index) => (
+          <div
+            data-testid={
+              `${index}-ingredient-name-and-measure ${index}-ingredient-step`
+            }
+            key={ index[0] }
           >
             <input
-              data-testid="ingredient-step"
-              name="ingredientes"
+              id={ index[0] }
               type="checkbox"
+              name={ index[0] }
+              onClick={ () => checked() }
             />
-            {`${ingredient} ${ingredientsMeasure[index]}`}
-          </label>
-        </div>))}
+            <label
+              key={ index[0] }
+              htmlFor={ index[0] }
+            >
+              {`${ingredient} ${ingredientsMeasure[index]}`}
+            </label>
+          </div>
+        ))}
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+          disabled={ disable }
+        >
+
+          Finish Recipe
+
+        </button>
+      </form>
       <p data-testid="instructions">{drinkRecipe.strInstructions}</p>
       <div className="RecipesDrinks-button">
         <ShareBtn />
@@ -82,15 +110,6 @@ export default function DrinkRecipes(props) {
       <section>
         <MealCarousel />
       </section>
-      <div>
-        <button
-          type="button"
-          data-testid="finish-recipe-btn"
-        >
-          Finish Recipe
-
-        </button>
-      </div>
       <div className="startRecipes-Drinks">
         <StartRecipeBtn />
       </div>
