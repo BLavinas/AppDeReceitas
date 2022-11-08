@@ -1,18 +1,49 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 import DrinkCarousel from './DrinkCarousel';
 import StartRecipeBtn from './StartRecipeBtn';
-import ShareBtn from './ShareBtn';
+// import ShareBtn from './ShareBtn';
 import FavoriteBtn from './FavoriteBtn';
 
+import shareIcon from '../images/shareIcon.svg';
 import '../style/mealRecipes.css';
+
+const copy = require('clipboard-copy');
 
 export default function MealRecipes(props) {
   const [mealIngredients, setMealIngredients] = useState([]);
   const [ingredientsMeasure, setIngredientsMeasure] = useState([]);
   const [youtubeId, setYoutubeId] = useState([]);
   const { setMealRecipe, mealRecipe } = useContext(LoginContext);
+  const history = useHistory();
+  // 41
+  const [linkCopied, setLinkCopied] = useState(false);
+  const handleClick = async () => {
+    const time = 1000;
+    const copiar = history.location.pathname.split('/in-progress');
+    console.log(copiar);
+    copiar.toString();
+    await copy(`http://localhost:3000${copiar[0]}`);
+    setLinkCopied(true);
+    setInterval(() => setLinkCopied(false), time);
+  };
+  // 41
+
+  // logica de desabilitar botão
+  const [disable, setDisable] = React.useState(true);
+
+  const checked = () => {
+    const requi39 = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (requi39.length === ingredientsMeasure.length) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  };
+  // fim da logica de desabilitar botão
+  // https://flexiple.com/javascript/disable-button-javascript/ Requisito 39
 
   useEffect(() => {
     const requestMealApi = async () => {
@@ -58,21 +89,39 @@ export default function MealRecipes(props) {
       <p data-testid="recipe-category">{mealRecipe.strCategory}</p>
       {mealIngredients.map((ingredient, index) => (
         <div
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
+          key={ index[0] }
+          data-testid={
+            `${index}-ingredient-name-and-measure`
+          }
         >
-          <label
-            htmlFor="ingredientes"
+          <div
             data-testid={ `${index}-ingredient-step` }
           >
             <input
-              data-testid="ingredient-step"
-              name="ingredientes"
+              className="risco"
               type="checkbox"
+              id={ index[0] }
+              name={ index[0] }
+              onClick={ () => checked() }
             />
-            {`${ingredient} ${ingredientsMeasure[index]}`}
-          </label>
+            <label
+              key={ index[0] }
+              htmlFor={ index[0] }
+            >
+              {`${ingredient} ${ingredientsMeasure[index]}`}
+            </label>
+          </div>
         </div>))}
+      <div>
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+          disabled={ disable }
+        >
+          Finish Recipe
+
+        </button>
+      </div>
       <p data-testid="instructions">
         {mealRecipe.strInstructions}
       </p>
@@ -93,21 +142,22 @@ export default function MealRecipes(props) {
         title="Embedded youtube"
       />
       <div className="Recipes-button">
-        <ShareBtn />
+        {linkCopied && <span>Link copied!</span>}
+        <button
+          type="button"
+          data-testid="share-btn"
+          onClick={ () => handleClick() }
+        >
+          <img
+            src={ shareIcon }
+            alt="share-button"
+          />
+        </button>
         <FavoriteBtn mealApi={ mealRecipe } />
       </div>
       <section className="Recipes-carrosel">
         <DrinkCarousel />
       </section>
-      <div>
-        <button
-          type="button"
-          data-testid="finish-recipe-btn"
-        >
-          Finish Recipe
-
-        </button>
-      </div>
       <div className="startRecipes-meal">
         <StartRecipeBtn />
       </div>

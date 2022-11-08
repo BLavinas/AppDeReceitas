@@ -8,6 +8,9 @@ p {
   padding-left: 10px;
 }
 
+.risco:checked + label {
+  text-decoration: line-through solid black;
+}
 
 .RecipesDrinks-container {
   background-color: #f2f2f2;
